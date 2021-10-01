@@ -1,0 +1,7 @@
+services:
+  productpage:
+    build: .
+    image: ghcr.io/dungpornb/bookinfo-productpage:dev
+    ports:
+      - "8083:8083"
+
