@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookinfo-dev-productpage
+  namespace: student11-bookinfo-dev
+  labels:
+    app: bookinfo-dev-productpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookinfo-dev-productpage
+  template:
+    metadata:
+      labels:
+        app: bookinfo-dev-productpage
+    spec:
+      containers:
+      - name: bookinfo-dev-productpage
+        image: ghcr.io/dungpornbt/bookinfo-productpage:dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8083
+          name: web-port
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8083
+            scheme: HTTP
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8083
+            scheme: HTTP
+        env:
+        - name: SERVICE_VERSION
+          value: v1
+      imagePullSecrets:
+      - name: registry-bookinfo
