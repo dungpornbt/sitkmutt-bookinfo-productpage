@@ -1,10 +1,10 @@
 services:
   productpage:
     build: .
-    image: {{ .Values.details.image }}:{{ .Values.details.tag }}
+    image: {{ .Values.productpage.image }}:{{ .Values.productpage.tag }}
     ports:
       - "8083:8083"
 environment:
-      RATINGS_HOSTNAME: {{ .Values.details.RATINGS_HOSTNAME }}
-      DETAILS_HOSTNAME: {{ .Values.details.DETAILS_HOSTNAME }}
-      REVIEWS_HOSTNAME: {{ .Values.details.REVIEWS_HOSTNAME }}    
+      RATINGS_HOSTNAME: {{ .Values.productpage.RATINGS_HOSTNAME }}
+      DETAILS_HOSTNAME: {{ .Values.productpage.DETAILS_HOSTNAME }}
+      REVIEWS_HOSTNAME: {{ .Values.productpage.REVIEWS_HOSTNAME }}    
